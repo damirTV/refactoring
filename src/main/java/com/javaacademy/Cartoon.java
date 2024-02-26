@@ -1,17 +1,16 @@
 package com.javaacademy;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 
 /**
  * Картон
  */
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class Cartoon {
+    @NonNull
+    @EqualsAndHashCode.Exclude
     public double weight;
 }
