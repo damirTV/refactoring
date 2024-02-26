@@ -1,6 +1,5 @@
 package com.javaacademy;
 
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -12,5 +11,5 @@ import lombok.NonNull;
 public class Cartoon {
     @NonNull
     @EqualsAndHashCode.Exclude
-    public double weight;
+    private double weight;
 }
