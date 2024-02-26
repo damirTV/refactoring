@@ -1,6 +1,5 @@
 package com.javaacademy;
 
-import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.io.BufferedWriter;
@@ -8,9 +7,11 @@ import java.io.BufferedWriter;
 /**
  * Фабрика по переработке мусора
  */
-@NoArgsConstructor
 public class UtilizationFactory {
     public static final double BOTTLE_SIZE = 500;
+
+    private UtilizationFactory() {
+    }
 
     @SneakyThrows
     private static Bottle refactorGlassGarbage(Garbage garbage) {
