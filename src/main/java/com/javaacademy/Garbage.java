@@ -1,16 +1,10 @@
 package com.javaacademy;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.Value;
 
-@Getter
-@RequiredArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Value
 public class Garbage {
-    private final GarbageType garbageType;
-    private final double weight;
-    private final String cityFrom;
+    GarbageType garbageType;
+    double weight;
+    String cityFrom;
 }
