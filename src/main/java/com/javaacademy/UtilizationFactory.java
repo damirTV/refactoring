@@ -30,9 +30,27 @@ public class UtilizationFactory {
             throws GarbageNotRefactorableException, IOException {
         for (Garbage garbage : garbageArray) {
             switch (garbage.getGarbageType()) {
-                case GLASS -> journal.write(new JournalRecord(UtilizationFactory.refactorGlassGarbage(garbage)).toString());
-                case PAPER -> journal.write(new JournalRecord(UtilizationFactory.refactorPaperGarbage(garbage)).toString());
-                default -> journal.write(new JournalRecord(garbage.getWeight()).toString());
+                case GLASS -> {
+                    JournalRecord record = JournalRecord
+                            .builder()
+                            .bottle(UtilizationFactory.refactorGlassGarbage(garbage))
+                            .build();
+                    journal.write(record.toString());
+                }
+                case PAPER -> {
+                    JournalRecord record = JournalRecord
+                            .builder()
+                            .cartoon(UtilizationFactory.refactorPaperGarbage(garbage))
+                            .build();
+                    journal.write(record.toString());
+                }
+                default -> {
+                    JournalRecord record = JournalRecord
+                            .builder()
+                            .garbageWeight(garbage.getWeight())
+                            .build();
+                    journal.write(record.toString());
+                }
             }
         }
     }
