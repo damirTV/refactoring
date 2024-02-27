@@ -1,21 +1,19 @@
 package com.javaacademy;
 
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 
 /**
  * Фабрика по переработке мусора
  */
+@UtilityClass
 public class UtilizationFactory {
-    public static final double BOTTLE_SIZE = 500;
-
-    private UtilizationFactory() {
-    }
+    public final double BOTTLE_SIZE = 500;
 
     @SneakyThrows
-    private static Bottle refactorGlassGarbage(Garbage garbage) {
+    private Bottle refactorGlassGarbage(Garbage garbage) {
         if (garbage.getGarbageType() != GarbageType.GLASS) {
             throw GarbageNotRefactorableException.builder()
                     .message("Мусор не состоит полностью из стекла!")
@@ -25,7 +23,7 @@ public class UtilizationFactory {
     }
 
     @SneakyThrows
-    private static Cartoon refactorPaperGarbage(Garbage garbage) {
+    private Cartoon refactorPaperGarbage(Garbage garbage) {
         if (garbage.getGarbageType() != GarbageType.PAPER) {
             throw GarbageNotRefactorableException.builder()
                     .message("Мусор не состоит полностью из бумаги!")
@@ -34,31 +32,22 @@ public class UtilizationFactory {
         return new Cartoon(garbage.getWeight() / 2);
     }
 
-    public static void refactorGarbage(Garbage[] garbageArray, BufferedWriter journal)
-            throws GarbageNotRefactorableException, IOException {
+    @SneakyThrows
+    public void refactorGarbage(Garbage[] garbageArray, BufferedWriter journal) {
         for (Garbage garbage : garbageArray) {
             switch (garbage.getGarbageType()) {
-                case GLASS -> {
-                    JournalRecord record = JournalRecord
-                            .builder()
-                            .bottle(UtilizationFactory.refactorGlassGarbage(garbage))
-                            .build();
-                    journal.write(record.toString());
-                }
-                case PAPER -> {
-                    JournalRecord record = JournalRecord
-                            .builder()
-                            .cartoon(UtilizationFactory.refactorPaperGarbage(garbage))
-                            .build();
-                    journal.write(record.toString());
-                }
-                default -> {
-                    JournalRecord record = JournalRecord
-                            .builder()
-                            .garbageWeight(garbage.getWeight())
-                            .build();
-                    journal.write(record.toString());
-                }
+                case GLASS -> journal.write(JournalRecord.builder()
+                        .bottle(UtilizationFactory.refactorGlassGarbage(garbage))
+                        .build()
+                        .toString());
+                case PAPER -> journal.write(JournalRecord.builder()
+                        .cartoon(UtilizationFactory.refactorPaperGarbage(garbage))
+                        .build()
+                        .toString());
+                default -> journal.write(JournalRecord.builder()
+                        .garbageWeight(garbage.getWeight())
+                        .build()
+                        .toString());
             }
         }
     }
