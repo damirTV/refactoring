@@ -2,7 +2,8 @@ package com.javaacademy;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
+import lombok.Cleanup;
+import lombok.SneakyThrows;
 
 /**
  * Runner
@@ -12,11 +13,11 @@ import java.io.IOException;
  * После чего происходит процесс переработки
  */
 public class Runner {
-    public static void main(String[] args) throws IOException, GarbageNotRefactorableException {
+    @SneakyThrows
+    public static void main(String[] args) {
         City paris = new City("Paris", 10_000_000);
         Garbage[] garbageArray = paris.createGarbage();
-        try (BufferedWriter journal = new BufferedWriter(new FileWriter("journal.txt"))) {
-            UtilizationFactory.refactorGarbage(garbageArray, journal);
-        }
+        @Cleanup BufferedWriter journal = new BufferedWriter(new FileWriter("journal.txt"));
+        UtilizationFactory.refactorGarbage(garbageArray, journal);
     }
 }
