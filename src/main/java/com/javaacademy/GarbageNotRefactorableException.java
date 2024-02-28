@@ -1,6 +1,6 @@
 package com.javaacademy;
 
-public class GarbageNotRefactorableException extends Exception{
+public class GarbageNotRefactorableException extends Exception {
     public GarbageNotRefactorableException() {
     }
 

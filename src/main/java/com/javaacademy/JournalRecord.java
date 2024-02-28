@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-
 public class JournalRecord {
     double garbageWeight;
     Bottle bottle;
