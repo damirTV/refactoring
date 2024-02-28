@@ -19,4 +19,5 @@ public class Runner {
             UtilizationFactory.refactorGarbage(garbageArray, journal);
         }
     }
- }
+}
+

@@ -15,7 +15,7 @@ public class City {
     public int peopleCount;
 
     public Garbage[] createGarbage() {
-        return new Garbage[] {
+        return new Garbage[]{
             new Garbage(GarbageType.GLASS, 1000, this.name),
             new Garbage(GarbageType.PAPER, 15000, this.name),
             new Garbage(GarbageType.MIXED, 200000, this.name),

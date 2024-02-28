@@ -16,7 +16,8 @@ public class GarbageNotRefactorableException extends Exception {
         super(cause);
     }
 
-    public GarbageNotRefactorableException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public GarbageNotRefactorableException(String message, Throwable cause,
+                                           boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }
