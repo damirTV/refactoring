@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class GarbageNotRefactorableException extends Exception{
+public class GarbageNotRefactorableException extends Exception {
     String message;
     Throwable cause;
     boolean enableSuppression;
